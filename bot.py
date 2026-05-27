@@ -34,10 +34,10 @@ logger = ActivityLogger()
 class ChorchaQuizBot:
     def __init__(self):
         # Configuration Fallbacks
-        self.telegram_token = os.environ.get("TELEGRAM_BOT_TOKEN", "8919385228:AAEvXH_q3EL-kFu0gihCb2RX6Fc4E0kgtbU")
-        self.chat_id = os.environ.get("TELEGRAM_CHAT_ID", "8309418981")
-        self.phone = os.environ.get("CHORCHA_PHONE", "01934648778")
-        self.password = os.environ.get("CHORCHA_PASS", "01934648778")
+        self.telegram_token = os.environ.get("TELEGRAM_BOT_TOKEN", "xxxxxxxxxxx")
+        self.chat_id = os.environ.get("TELEGRAM_CHAT_ID", "xxxxxxxxxxxx1")
+        self.phone = os.environ.get("CHORCHA_PHONE", "xxxxxxx")
+        self.password = os.environ.get("CHORCHA_PASS", "xxxxxxx")
         self.auth_file = Path(__file__).parent / "cookie.json"
         
         # Populating cookies from environment secret if present
