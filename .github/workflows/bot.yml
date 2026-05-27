@@ -1,0 +1,40 @@
+name: Chorcha Automation Bot
+
+on:
+  workflow_dispatch:
+    # Allows manual triggering of the workflow from the Actions tab
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install Playwright and Browser Dependencies
+        run: |
+          npx playwright install --with-deps chromium
+
+      - name: Run Chorcha Quiz Bot
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          CHORCHA_PHONE: ${{ secrets.CHORCHA_PHONE }}
+          CHORCHA_PASS: ${{ secrets.CHORCHA_PASS }}
+          CHORCHA_COOKIES: ${{ secrets.CHORCHA_COOKIES }}
+          HEADLESS: 'true'
+        run: |
+          python bot.py
+
